@@ -1,0 +1,242 @@
+:root {
+  --paper: #eff3ee;
+  --ink: #17241f;
+  --ink-soft: #4a564f;
+  --forest: #1f6f5c;
+  --forest-dark: #16513f;
+  --coral: #e8735a;
+  --line: #cdd8d1;
+  --font-display: "Fraunces", serif;
+  --font-body: "Work Sans", sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+.app-shell {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem 4rem;
+}
+
+.masthead {
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 1.25rem;
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.masthead h1 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.6rem;
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+.masthead button {
+  background: none;
+  border: none;
+  color: var(--ink-soft);
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  cursor: pointer;
+  padding: 0;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.date-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1.75rem;
+  font-size: 0.8rem;
+  color: var(--ink-soft);
+}
+
+.day-cell {
+  width: 2rem;
+  text-align: center;
+}
+
+.day-cell.today {
+  color: var(--forest);
+  font-weight: 600;
+}
+
+.habit-row {
+  display: grid;
+  grid-template-columns: 1fr repeat(7, 2rem);
+  align-items: center;
+  padding: 0.9rem 0;
+  border-bottom: 1px solid var(--line);
+  gap: 0.25rem;
+}
+
+.habit-name {
+  font-size: 0.95rem;
+  padding-right: 0.5rem;
+}
+
+.habit-streak {
+  display: block;
+  font-size: 0.72rem;
+  color: var(--coral);
+  margin-top: 0.15rem;
+}
+
+.check {
+  width: 1.6rem;
+  height: 1.6rem;
+  border-radius: 50%;
+  border: 1.5px solid var(--line);
+  background: transparent;
+  cursor: pointer;
+  margin: 0 auto;
+  display: block;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.check.done {
+  background: var(--forest);
+  border-color: var(--forest);
+}
+
+.check:disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+.add-habit {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 1.75rem;
+}
+
+.add-habit input {
+  flex: 1;
+  border: none;
+  border-bottom: 1.5px solid var(--line);
+  background: transparent;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  padding: 0.5rem 0.1rem;
+  color: var(--ink);
+}
+
+.add-habit input:focus {
+  outline: none;
+  border-bottom-color: var(--forest);
+}
+
+.add-habit button,
+.primary-button {
+  background: var(--forest);
+  color: var(--paper);
+  border: none;
+  padding: 0.6rem 1.1rem;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.add-habit button:hover,
+.primary-button:hover {
+  background: var(--forest-dark);
+}
+
+.empty-state {
+  padding: 2rem 0;
+  color: var(--ink-soft);
+  font-size: 0.9rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.auth-shell {
+  max-width: 360px;
+  margin: 4rem auto;
+  padding: 0 1.5rem;
+}
+
+.auth-shell h1 {
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  margin-bottom: 0.25rem;
+}
+
+.auth-shell p {
+  color: var(--ink-soft);
+  font-size: 0.9rem;
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+}
+
+.auth-shell form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+
+.auth-shell label {
+  font-size: 0.8rem;
+  color: var(--ink-soft);
+  display: block;
+  margin-bottom: 0.3rem;
+}
+
+.auth-shell input {
+  width: 100%;
+  border: none;
+  border-bottom: 1.5px solid var(--line);
+  background: transparent;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  padding: 0.5rem 0.1rem;
+  color: var(--ink);
+}
+
+.auth-shell input:focus {
+  outline: none;
+  border-bottom-color: var(--forest);
+}
+
+.auth-toggle {
+  margin-top: 1.25rem;
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+}
+
+.auth-toggle button {
+  background: none;
+  border: none;
+  color: var(--forest);
+  cursor: pointer;
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  padding: 0;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.auth-error {
+  color: var(--coral);
+  font-size: 0.85rem;
+}
