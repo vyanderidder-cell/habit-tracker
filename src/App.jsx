@@ -3,6 +3,7 @@ import { supabase } from "./supabaseClient";
 import Auth from "./components/Auth";
 import HabitTracker from "./components/HabitTracker";
 import WorkoutBuilder from "./components/WorkoutBuilder";
+import NutritionTracker from "./components/NutritionTracker";
 
 export default function App() {
   const [session, setSession] = useState(null);
@@ -48,13 +49,17 @@ export default function App() {
         >
           Séances
         </button>
+        <button
+          className={tab === "nutrition" ? "tab active" : "tab"}
+          onClick={() => setTab("nutrition")}
+        >
+          Nutrition
+        </button>
       </div>
 
-      {tab === "habits" ? (
-        <HabitTracker session={session} bare />
-      ) : (
-        <WorkoutBuilder session={session} />
-      )}
+      {tab === "habits" && <HabitTracker session={session} bare />}
+      {tab === "workouts" && <WorkoutBuilder session={session} />}
+      {tab === "nutrition" && <NutritionTracker session={session} />}
     </div>
   );
 }
