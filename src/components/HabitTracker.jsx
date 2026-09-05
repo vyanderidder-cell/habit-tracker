@@ -18,7 +18,7 @@ function lastNDays(n) {
   return days;
 }
 
-export default function HabitTracker({ session }) {
+export default function HabitTracker({ session, bare = false }) {
   const [habits, setHabits] = useState([]);
   const [logs, setLogs] = useState([]); // { habit_id, date }
   const [newHabit, setNewHabit] = useState("");
@@ -106,17 +106,8 @@ export default function HabitTracker({ session }) {
     }
   }
 
-  async function signOut() {
-    await supabase.auth.signOut();
-  }
-
-  return (
-    <div className="app-shell">
-      <div className="masthead">
-        <h1>Carnet</h1>
-        <button onClick={signOut}>Se déconnecter</button>
-      </div>
-
+  const content = (
+    <>
       <div className="date-row">
         <span style={{ flex: 1 }} />
         {days.map((d) => (
@@ -174,6 +165,18 @@ export default function HabitTracker({ session }) {
         />
         <button type="submit">Ajouter</button>
       </form>
+    </>
+  );
+
+  if (bare) return content;
+
+  return (
+    <div className="app-shell">
+      <div className="masthead">
+        <h1>Carnet</h1>
+        <button onClick={() => supabase.auth.signOut()}>Se déconnecter</button>
+      </div>
+      {content}
     </div>
   );
 }
