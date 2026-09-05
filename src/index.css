@@ -63,6 +63,29 @@ body {
   text-underline-offset: 3px;
 }
 
+.tab-row {
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 1.75rem;
+}
+
+.tab {
+  background: none;
+  border: none;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  color: var(--ink-soft);
+  cursor: pointer;
+  padding: 0 0 0.4rem;
+  border-bottom: 2px solid transparent;
+}
+
+.tab.active {
+  color: var(--ink);
+  border-bottom-color: var(--forest);
+  font-weight: 500;
+}
+
 .date-row {
   display: flex;
   justify-content: space-between;

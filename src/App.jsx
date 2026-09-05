@@ -2,10 +2,12 @@ import { useEffect, useState } from "react";
 import { supabase } from "./supabaseClient";
 import Auth from "./components/Auth";
 import HabitTracker from "./components/HabitTracker";
+import WorkoutBuilder from "./components/WorkoutBuilder";
 
 export default function App() {
   const [session, setSession] = useState(null);
   const [checkingSession, setCheckingSession] = useState(true);
+  const [tab, setTab] = useState("habits"); // "habits" | "workouts"
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
@@ -24,5 +26,35 @@ export default function App() {
 
   if (checkingSession) return null;
 
-  return session ? <HabitTracker session={session} /> : <Auth />;
+  if (!session) return <Auth />;
+
+  return (
+    <div className="app-shell">
+      <div className="masthead">
+        <h1>Carnet</h1>
+        <button onClick={() => supabase.auth.signOut()}>Se déconnecter</button>
+      </div>
+
+      <div className="tab-row">
+        <button
+          className={tab === "habits" ? "tab active" : "tab"}
+          onClick={() => setTab("habits")}
+        >
+          Habitudes
+        </button>
+        <button
+          className={tab === "workouts" ? "tab active" : "tab"}
+          onClick={() => setTab("workouts")}
+        >
+          Séances
+        </button>
+      </div>
+
+      {tab === "habits" ? (
+        <HabitTracker session={session} bare />
+      ) : (
+        <WorkoutBuilder session={session} />
+      )}
+    </div>
+  );
 }
